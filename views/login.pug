@@ -1,0 +1,19 @@
+extends layout
+block head
+  include header
+  script
+    include ../public/javascript/login.js
+
+
+block content
+
+  .container
+    h1 Login
+    form(onsubmit='return login()')
+      .form-group
+        label Username
+        input.form-control#username(type='text')
+      .form-group
+        label Password
+        input.form-control#pass(type='password')
+      button.btn.btn-primary(type='submit') Login

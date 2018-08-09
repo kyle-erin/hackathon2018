@@ -1,0 +1,22 @@
+extends layout
+block head
+  include header
+  script
+    include ../public/javascript/signup.js
+
+block content
+
+  .container
+    h1 Signup
+    form(onsubmit='return signup()')
+      .form-group
+        label Username
+        input.form-control(type='text')#username
+      .form-group
+        label Password
+        input.form-control(type='password')#pass
+      .form-group
+        label Reenter Password
+        input.form-control(type='password')#pass2
+      button.btn.btn-primary(type='submit') Signup
+      a.btn.btn-default(href='/') Cancel
