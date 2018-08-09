@@ -4,10 +4,29 @@ let path = require('path')
 let cookieParser = require('cookie-parser')
 let logger = require('morgan')
 let session = require('express-session')
-
 let mongoose = require('mongoose')
+let MongoStore = require('connect-mongo')(session)
 require('./models/user')
+require('./models/list')
 
+let List = mongoose.model('List')
+
+// Add a list to the DB if there isn't one, maybe later add having multiple lists per user
+List.find()
+    .then((docs) => {
+      if (docs.length === 0) {
+        let l = List()
+        l.name = 'Shopping List'
+        l.save()
+      }
+      else {
+        // Do nothing
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+// db
 mongoose.connect('mongodb://localhost:27017/roommate-shopping')
     .then((res) => {
       console.log('connected successfully')
@@ -15,15 +34,19 @@ mongoose.connect('mongodb://localhost:27017/roommate-shopping')
     .catch((err) => {
       console.error(err)
     })
+
+// routes
 let indexRouter = require('./routes/index')
 let usersRouter = require('./routes/users')
 
 let app = express()
 
+// session
 app.use(session({
   secret: 'this is super secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
 

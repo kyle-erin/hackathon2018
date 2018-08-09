@@ -1,5 +1,23 @@
 extends layout
+block head
+  include header
+  script(src='/socket.io/socket.io.js')
+
+  script
+    include ../public/javascript/index.js
 
 block content
-  h1= title
-  p Welcome to #{title}, #{user}
+  .container
+    h1= title
+    p Welcome to #{title}, #{user}
+
+    ul.list-group#list(style='overflow-y:auto; max-height:75vh;')
+      each item in list.items
+        li.list-group-item= item.name
+          a.btn.btn-default.float-right(onclick='remove()')
+            i.fas.fa-trash
+    .row(style='max-height:25vh;')
+      .form-group.mt-3.col-sm-11
+        input.form-control#text(placeholder='Enter an item and press enter...')
+      .form-group.mt-3.col-sm-1
+        button.btn.btn-primary(onclick='add()') Add

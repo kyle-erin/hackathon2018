@@ -3,11 +3,28 @@ let router = express.Router()
 let bcrypt = require('bcrypt')
 let mongoose = require('mongoose')
 let User = mongoose.model('User')
+let List = mongoose.model('List')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (req.session['userId']) {
-    res.render('index', {title: "Roommate Shopping", user: req.session['username']})
+    List.find()
+        .then((docs) => {
+          if (docs.length === 0) {
+            res.send("No list exists")
+          }
+          else {
+            res.render('index', {
+              title: "Roommate Shopping",
+              user: req.session['username'],
+              // items: [{name: 'Milk'}, {name: 'Bread'}],
+              list: docs[0]
+            })
+          }
+        })
+        .catch((err) => {
+          res.send(err)
+        })
   }
   else {
     res.render('login')
