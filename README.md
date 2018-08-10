@@ -11,6 +11,8 @@ These instructions will help you get the code up and running.
 You will need NodeJS installed. A download link can be found [here](https://nodejs.org/en/).
 During the installation process, make sure to add nodejs and npm to the global path.
 
+You will also need to run MongoDB, which can be downloaded [here](https://www.mongodb.com/download-center?jmp=nav#community).
+
 ### Installing
 
 1. Clone the repository or download a zip of it.
