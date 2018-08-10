@@ -22,18 +22,8 @@ During the installation process, make sure to add nodejs and npm to the global p
 3. While in a terminal/command prompt, within the base directory, run this command: `npm start`
 4. A window should open, showing the app.
 
-## Running the tests
-
-In a terminal/prompt type `npm test` to run tests.
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [ExpressJS](https://expressjs.com/) - Web framework
+* [MongoDB](https://www.mongodb.com/) - A nosql database engine
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
